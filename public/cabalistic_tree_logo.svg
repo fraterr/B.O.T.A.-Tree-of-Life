@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" width="50" height="70">
+  <!-- Style for lines and circles -->
+  <style>
+    .logo-line {
+      stroke: #e8b07e;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      opacity: 0.6;
+    }
+    .logo-node {
+      fill: #121212;
+      stroke: #e8b07e;
+      stroke-width: 1.5;
+    }
+  </style>
+  
+  <!-- Paths -->
+  <!-- Kether connections -->
+  <line x1="50" y1="15" x2="75" y2="30" class="logo-line" />
+  <line x1="50" y1="15" x2="25" y2="30" class="logo-line" />
+  <line x1="50" y1="15" x2="50" y2="70" class="logo-line" />
+
+  <!-- Chokmah connections -->
+  <line x1="75" y1="30" x2="25" y2="30" class="logo-line" />
+  <line x1="75" y1="30" x2="75" y2="55" class="logo-line" />
+  <line x1="75" y1="30" x2="50" y2="70" class="logo-line" />
+
+  <!-- Binah connections -->
+  <line x1="25" y1="30" x2="25" y2="55" class="logo-line" />
+  <line x1="25" y1="30" x2="50" y2="70" class="logo-line" />
+
+  <!-- Chesed connections -->
+  <line x1="75" y1="55" x2="25" y2="55" class="logo-line" />
+  <line x1="75" y1="55" x2="75" y2="85" class="logo-line" />
+  <line x1="75" y1="55" x2="50" y2="70" class="logo-line" />
+
+  <!-- Geburah connections -->
+  <line x1="25" y1="55" x2="25" y2="85" class="logo-line" />
+  <line x1="25" y1="55" x2="50" y2="70" class="logo-line" />
+
+  <!-- Tiphareth connections -->
+  <line x1="50" y1="70" x2="75" y2="85" class="logo-line" />
+  <line x1="50" y1="70" x2="25" y2="85" class="logo-line" />
+  <line x1="50" y1="70" x2="50" y2="100" class="logo-line" />
+
+  <!-- Netzach connections -->
+  <line x1="75" y1="85" x2="25" y2="85" class="logo-line" />
+  <line x1="75" y1="85" x2="50" y2="100" class="logo-line" />
+  <line x1="75" y1="85" x2="50" y2="125" class="logo-line" />
+
+  <!-- Hod connections -->
+  <line x1="25" y1="85" x2="50" y2="100" class="logo-line" />
+  <line x1="25" y1="85" x2="50" y2="125" class="logo-line" />
+
+  <!-- Yesod connections -->
+  <line x1="50" y1="100" x2="50" y2="125" class="logo-line" />
+
+  <!-- Sephiroth Spheres -->
+  <!-- Center Column -->
+  <circle cx="50" cy="15" r="4" class="logo-node" />
+  <circle cx="50" cy="70" r="4" class="logo-node" />
+  <circle cx="50" cy="100" r="4" class="logo-node" />
+  <circle cx="50" cy="125" r="4" class="logo-node" />
+
+  <!-- Left Column -->
+  <circle cx="25" cy="30" r="4" class="logo-node" />
+  <circle cx="25" cy="55" r="4" class="logo-node" />
+  <circle cx="25" cy="85" r="4" class="logo-node" />
+
+  <!-- Right Column -->
+  <circle cx="75" cy="30" r="4" class="logo-node" />
+  <circle cx="75" cy="55" r="4" class="logo-node" />
+  <circle cx="75" cy="85" r="4" class="logo-node" />
+</svg>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B.O.T.A. Tree of Life</title>
+    <link rel="icon" type="image/svg+xml" href="/cabalistic_tree_logo.svg" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-brand">
+        <img src="/cabalistic_tree_logo.svg" alt="B.O.T.A. Logo" class="app-logo" width="50" height="50" />
+        <h1>B.O.T.A. Tree of Life</h1>
+      </div>
+      <nav class="header-nav">
+        <a href="https://fraterr.github.io/practicalhumanism/" target="_blank" rel="noopener" class="nav-link">Practical Humanism</a>
+        <a href="https://buymeacoffee.com/practicalhumanism" target="_blank" rel="noopener" class="nav-link nav-link-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="tea-icon">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+            <line x1="6" y1="2" x2="6" y2="5" />
+            <line x1="10" y1="2" x2="10" y2="5" />
+            <line x1="14" y1="2" x2="14" y2="5" />
+          </svg>
+          Buy me a tea
+        </a>
+        <button id="about-btn" class="nav-btn">About</button>
+      </nav>
+    </header>
+    <div class="subtitle">Etz Chaim (עץ חיים) - The map of creation and consciousness.</div>
+    <div class="pillar-controls">
+      <span class="controls-label">Show Pillar:</span>
+      <button class="pillar-btn active" data-pillar-control="all">All</button>
+      <button class="pillar-btn" data-pillar-control="severity">Severity (Left)</button>
+      <button class="pillar-btn" data-pillar-control="equilibrium">Mildness (Middle)</button>
+      <button class="pillar-btn" data-pillar-control="mercy">Mercy (Right)</button>
+    </div>
+    <div class="app-layout">
+      <div class="tree-container" id="svg-container">
+        <!-- SVG will be injected here by JS -->
+      </div>
+      <aside class="info-sidebar" id="info-sidebar">
+        <div class="info-placeholder">Click on a Path or Sephirah to reveal its wisdom.</div>
+      </aside>
+    </div>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal">
+      <div class="modal-content">
+        <button class="close-modal-btn" id="close-modal">&times;</button>
+        <h2>About B.O.T.A. Tree of Life</h2>
+        <div class="modal-body">
+          <p>This interactive application is a study guide and contemplation tool dedicated to the <strong>Builders of the Adytum (B.O.T.A.)</strong> system of Hermetic Qabalah.</p>
+          <p>It maps the 10 Sephiroth (Emanations) and the 22 Paths of Wisdom, which correspond to the 22 letters of the Hebrew alphabet and the 22 Keys of the Tarot Major Arcana.</p>
+          <h3>Key Features:</h3>
+          <ul>
+            <li><strong>Interactive Tree:</strong> Click any node or path to reveal its esoteric metadata, Hebrew letters, and B.O.T.A. color attributions.</li>
+            <li><strong>Tarot Integration:</strong> High-definition Major Arcana miniatures automatically rotated and aligned with their respective paths.</li>
+            <li><strong>Three Pillars Isolation:</strong> Easily filter and highlight the Pillar of Severity (Left), Pillar of Mercy (Right), or Pillar of Mildness (Middle).</li>
+            <li><strong>Dynamic Gematria:</strong> View step-by-step Hebrew gematria breakdowns and sums for all Sephiroth and path letter attributions.</li>
+            <li><strong>Sefer Yetzirah Text:</strong> Access the traditional Book of Formation description for each Path of Wisdom.</li>
+          </ul>
+          <p class="modal-footer">Created as an open source study aid. Dedicated to the light of the Ageless Wisdom.</p>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

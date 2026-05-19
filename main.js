@@ -711,6 +711,19 @@ function createTree() {
             }
         });
     }
+
+    // Zoom control logic
+    const zoomSlider = document.getElementById('tree-zoom');
+    if (zoomSlider) {
+        zoomSlider.addEventListener('input', (e) => {
+            const val = e.target.value;
+            const container = document.getElementById('svg-container');
+            if (container) {
+                const newWidth = (val / 100) * 800;
+                container.style.setProperty('--tree-max-width', `${newWidth}px`);
+            }
+        });
+    }
 }
 
 createTree();

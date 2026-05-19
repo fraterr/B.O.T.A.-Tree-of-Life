@@ -664,7 +664,7 @@ function createTree() {
         }
     };
 
-    const handleElementClick = (id, type) => {
+    const handleElementClick = (id, type, openSidebar = true) => {
         const numericId = parseInt(id);
         const btn = document.querySelector(`.path-node-btn[data-id="${id}"][data-type="${type}"]`);
         const svgEl = document.querySelector(`g[data-id="${id}"][data-type="${type}"]`);
@@ -685,7 +685,9 @@ function createTree() {
             svgEl?.classList.add('map-highlighted');
             treeElement.classList.add('has-map-highlights');
             
-            updateSidebar(id, type);
+            if (openSidebar) {
+                updateSidebar(id, type);
+            }
         } else {
             // Multi select mode
             const isHighlighted = btn?.classList.contains('highlighted');
@@ -736,7 +738,7 @@ function createTree() {
             }
             btn.textContent = i;
             btn.addEventListener('click', () => {
-                handleElementClick(i, type);
+                handleElementClick(i, type, false);
             });
             pathsGrid.appendChild(btn);
         }

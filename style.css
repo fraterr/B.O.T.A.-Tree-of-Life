@@ -938,5 +938,30 @@ h1, h2, h3, h4, h5, h6 {
   pointer-events: none;
 }
 
+.reset-highlights-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0a0a0;
+  border-radius: 8px;
+  padding: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.reset-highlights-btn:hover {
+  color: #ffffff;
+  background: rgba(232, 176, 126, 0.1);
+  border-color: rgba(232, 176, 126, 0.3);
+  box-shadow: 0 0 10px rgba(232, 176, 126, 0.15);
+}
+
 
 

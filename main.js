@@ -762,6 +762,21 @@ function createTree() {
         });
     }
 
+    // Reset Highlights Button
+    const resetHighlightsBtn = document.getElementById('reset-highlights');
+    if (resetHighlightsBtn) {
+        resetHighlightsBtn.addEventListener('click', () => {
+            treeElement.classList.remove('has-map-highlights');
+            document.querySelectorAll('.path-node-btn').forEach(b => b.classList.remove('highlighted'));
+            document.querySelectorAll('.sephirah-group, .path-group').forEach(el => el.classList.remove('map-highlighted'));
+            
+            if (sidebar) {
+                sidebar.classList.remove('active');
+                document.getElementById('paths-map-panel')?.classList.remove('shifted');
+            }
+        });
+    }
+
     document.querySelectorAll('.sephirah-group, .path-group').forEach(el => {
         el.addEventListener('click', () => {
             const id = el.getAttribute('data-id');

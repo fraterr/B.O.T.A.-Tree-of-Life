@@ -559,98 +559,95 @@ function createTree() {
     svgContent += `</g></svg>`;
     document.querySelector('#svg-container').innerHTML = svgContent;
 
+    let multiSelectMode = false;
+
     const sidebar = document.getElementById('info-sidebar');
-    if (sidebar) {
-        // Event delegation for close button
-        sidebar.addEventListener('click', (e) => {
-            if (e.target.closest('#close-sidebar')) {
-                sidebar.classList.remove('active');
-            }
-        });
+    const treeElement = document.querySelector('.cabalistic-tree');
 
-        const updateSidebar = (id, type) => {
-            const info = pathIntelligences[id];
-            if (!info) return;
+    const updateSidebar = (id, type) => {
+        const info = pathIntelligences[id];
+        if (!info) return;
 
-            let name;
-            let imageHtml = '';
-            let detailsHtml = '';
-            let subTitleHtml = `<h3>${info.title}</h3>`;
+        let name;
+        let imageHtml = '';
+        let detailsHtml = '';
+        let subTitleHtml = `<h3>${info.title}</h3>`;
 
-            if (type === 'sephirah') {
-                const seph = sephiroth.find(x => x.id === parseInt(id));
-                name = `${info.title}`;
-                subTitleHtml = '';
+        if (type === 'sephirah') {
+            const seph = sephiroth.find(x => x.id === parseInt(id));
+            name = `${info.title}`;
+            subTitleHtml = '';
 
-                const gem = getGematria(seph.hebrew);
-                let gematriaHtml = '';
-                if (gem) {
-                    gematriaHtml = `
-                        <div class="detail-row">
-                            <span class="detail-label">Hebrew Spelling</span>
-                            <span class="detail-val">${seph.hebrew}</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Gematria Value</span>
-                            <span class="detail-val">${gem.sum}</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Gematria Breakdown</span>
-                            <span class="detail-val" style="font-size: 0.82rem; line-height: 1.4;">${gem.breakdown}</span>
-                        </div>
-                    `;
-                }
-
-                if (info.sephirahDetails) {
-                    detailsHtml = `
-                        <div class="sephirah-details">
-                            ${gematriaHtml}
-                            ${Object.entries(info.sephirahDetails).map(([key, val]) => `
-                                <div class="detail-row">
-                                    <span class="detail-label">${key}</span>
-                                    <span class="detail-val">${val}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                }
-            } else {
-                const path = paths.find(x => x.id === parseInt(id));
-                name = `Path ${id}: ${path.title || path.name}`;
-                subTitleHtml = '';
-                imageHtml = `<img src="${path.image}" class="sidebar-tarot-card" alt="${path.name}" />`;
-
-                const gem = getGematria(path.letter);
-                const letterData = gematriaMap[path.letter];
-                let gematriaHtml = '';
-                if (gem && letterData) {
-                    gematriaHtml = `
-                        <div class="detail-row">
-                            <span class="detail-label">Hebrew Letter</span>
-                            <span class="detail-val">${path.letter} (${letterData.name})</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Gematria Value</span>
-                            <span class="detail-val">${gem.sum}</span>
-                        </div>
-                    `;
-                }
-
-                if (info.pathDetails) {
-                    detailsHtml = `
-                        <div class="sephirah-details">
-                            ${gematriaHtml}
-                            ${Object.entries(info.pathDetails).map(([key, val]) => `
-                                <div class="detail-row">
-                                    <span class="detail-label">${key}</span>
-                                    <span class="detail-val">${val}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    `;
-                }
+            const gem = getGematria(seph.hebrew);
+            let gematriaHtml = '';
+            if (gem) {
+                gematriaHtml = `
+                    <div class="detail-row">
+                        <span class="detail-label">Hebrew Spelling</span>
+                        <span class="detail-val">${seph.hebrew}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Gematria Value</span>
+                        <span class="detail-val">${gem.sum}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Gematria Breakdown</span>
+                        <span class="detail-val" style="font-size: 0.82rem; line-height: 1.4;">${gem.breakdown}</span>
+                    </div>
+                `;
             }
 
+            if (info.sephirahDetails) {
+                detailsHtml = `
+                    <div class="sephirah-details">
+                        ${gematriaHtml}
+                        ${Object.entries(info.sephirahDetails).map(([key, val]) => `
+                            <div class="detail-row">
+                                <span class="detail-label">${key}</span>
+                                <span class="detail-val">${val}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        } else {
+            const path = paths.find(x => x.id === parseInt(id));
+            name = `Path ${id}: ${path.title || path.name}`;
+            subTitleHtml = '';
+            imageHtml = `<img src="${path.image}" class="sidebar-tarot-card" alt="${path.name}" />`;
+
+            const gem = getGematria(path.letter);
+            const letterData = gematriaMap[path.letter];
+            let gematriaHtml = '';
+            if (gem && letterData) {
+                gematriaHtml = `
+                    <div class="detail-row">
+                        <span class="detail-label">Hebrew Letter</span>
+                        <span class="detail-val">${path.letter} (${letterData.name})</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Gematria Value</span>
+                        <span class="detail-val">${gem.sum}</span>
+                    </div>
+                `;
+            }
+
+            if (info.pathDetails) {
+                detailsHtml = `
+                    <div class="sephirah-details">
+                        ${gematriaHtml}
+                        ${Object.entries(info.pathDetails).map(([key, val]) => `
+                            <div class="detail-row">
+                                <span class="detail-label">${key}</span>
+                                <span class="detail-val">${val}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+        }
+
+        if (sidebar) {
             sidebar.innerHTML = `
                 <button class="close-sidebar-btn" id="close-sidebar">&times;</button>
                 <h2>${name}</h2>
@@ -663,19 +660,115 @@ function createTree() {
                 </div>
             `;
             sidebar.classList.add('active');
-        };
+            document.getElementById('paths-map-panel')?.classList.add('shifted');
+        }
+    };
 
-        document.querySelectorAll('.sephirah-group, .path-group').forEach(el => {
-            el.addEventListener('click', () => {
-                const id = el.getAttribute('data-id');
-                const type = el.getAttribute('data-type');
-                updateSidebar(id, type);
-            });
+    const handleElementClick = (id, type) => {
+        const numericId = parseInt(id);
+        const btn = document.querySelector(`.path-node-btn[data-id="${id}"][data-type="${type}"]`);
+        const svgEl = document.querySelector(`g[data-id="${id}"][data-type="${type}"]`);
+        
+        // Reset pillar highlights since custom highlighting is starting
+        treeElement.classList.remove('highlight-severity', 'highlight-mercy', 'highlight-equilibrium');
+        document.querySelectorAll('.pillar-btn').forEach(b => {
+            if (b.getAttribute('data-pillar-control') === 'all') b.classList.add('active');
+            else b.classList.remove('active');
+        });
+
+        if (!multiSelectMode) {
+            // Single select mode
+            document.querySelectorAll('.path-node-btn').forEach(b => b.classList.remove('highlighted'));
+            document.querySelectorAll('.sephirah-group, .path-group').forEach(el => el.classList.remove('map-highlighted'));
+            
+            btn?.classList.add('highlighted');
+            svgEl?.classList.add('map-highlighted');
+            treeElement.classList.add('has-map-highlights');
+            
+            updateSidebar(id, type);
+        } else {
+            // Multi select mode
+            const isHighlighted = btn?.classList.contains('highlighted');
+            if (isHighlighted) {
+                btn?.classList.remove('highlighted');
+                svgEl?.classList.remove('map-highlighted');
+            } else {
+                btn?.classList.add('highlighted');
+                svgEl?.classList.add('map-highlighted');
+            }
+            
+            const anyHighlights = document.querySelectorAll('.path-node-btn.highlighted').length > 0;
+            if (anyHighlights) {
+                treeElement.classList.add('has-map-highlights');
+            } else {
+                treeElement.classList.remove('has-map-highlights');
+            }
+        }
+    };
+
+    if (sidebar) {
+        sidebar.addEventListener('click', (e) => {
+            if (e.target.closest('#close-sidebar')) {
+                sidebar.classList.remove('active');
+                document.getElementById('paths-map-panel')?.classList.remove('shifted');
+                
+                if (!multiSelectMode) {
+                    treeElement.classList.remove('has-map-highlights');
+                    document.querySelectorAll('.path-node-btn').forEach(b => b.classList.remove('highlighted'));
+                    document.querySelectorAll('.sephirah-group, .path-group').forEach(el => el.classList.remove('map-highlighted'));
+                }
+            }
         });
     }
 
+    // Populate Paths Index Map
+    const pathsGrid = document.getElementById('paths-grid');
+    if (pathsGrid) {
+        pathsGrid.innerHTML = '';
+        for (let i = 1; i <= 32; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'path-node-btn';
+            btn.setAttribute('data-id', i);
+            const type = i <= 10 ? 'sephirah' : 'path';
+            btn.setAttribute('data-type', type);
+            if (type === 'sephirah') {
+                btn.classList.add('type-sephirah');
+            }
+            btn.textContent = i;
+            btn.addEventListener('click', () => {
+                handleElementClick(i, type);
+            });
+            pathsGrid.appendChild(btn);
+        }
+    }
+
+    // Multiselect Toggle Button
+    const multiSelectToggle = document.getElementById('multiselect-toggle');
+    if (multiSelectToggle) {
+        multiSelectToggle.addEventListener('click', () => {
+            multiSelectMode = !multiSelectMode;
+            multiSelectToggle.classList.toggle('active', multiSelectMode);
+            
+            treeElement.classList.remove('has-map-highlights');
+            document.querySelectorAll('.path-node-btn').forEach(b => b.classList.remove('highlighted'));
+            document.querySelectorAll('.sephirah-group, .path-group').forEach(el => el.classList.remove('map-highlighted'));
+            
+            if (!multiSelectMode && sidebar) {
+                sidebar.classList.remove('active');
+                document.getElementById('paths-map-panel')?.classList.remove('shifted');
+            }
+        });
+    }
+
+    document.querySelectorAll('.sephirah-group, .path-group').forEach(el => {
+        el.addEventListener('click', () => {
+            const id = el.getAttribute('data-id');
+            const type = el.getAttribute('data-type');
+            handleElementClick(id, type);
+        });
+    });
+
     // Pillar highlighting controls
-    const treeElement = document.querySelector('.cabalistic-tree');
     document.querySelectorAll('.pillar-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.pillar-btn').forEach(b => b.classList.remove('active'));
@@ -685,6 +778,11 @@ function createTree() {
             
             treeElement.classList.remove('highlight-severity', 'highlight-mercy', 'highlight-equilibrium');
             
+            // Clear map highlights when switching pillars
+            treeElement.classList.remove('has-map-highlights');
+            document.querySelectorAll('.path-node-btn').forEach(b => b.classList.remove('highlighted'));
+            document.querySelectorAll('.sephirah-group, .path-group').forEach(el => el.classList.remove('map-highlighted'));
+
             if (pillar !== 'all') {
                 treeElement.classList.add(`highlight-${pillar}`);
             }

@@ -831,7 +831,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .paths-map-header h3 {
   margin: 0;
-  font-size: 0.85rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #e8b07e;
